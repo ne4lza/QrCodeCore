@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QrCodeCore", "QrCodeCore\QrCodeCore.csproj", "{B5F6934B-6376-4721-8DAD-56A32AA80695}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QrCodeCoreApi", "QrCodeCoreApi\QrCodeCoreApi.csproj", "{1073DB6B-382D-4CA7-B312-9252AA92D869}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QrCodeCoreEntities", "QrCodeCoreEntities\QrCodeCoreEntities.csproj", "{D94E8CAA-2B61-4E3A-B3C6-ACF6B55A401B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5F6934B-6376-4721-8DAD-56A32AA80695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5F6934B-6376-4721-8DAD-56A32AA80695}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5F6934B-6376-4721-8DAD-56A32AA80695}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5F6934B-6376-4721-8DAD-56A32AA80695}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1073DB6B-382D-4CA7-B312-9252AA92D869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1073DB6B-382D-4CA7-B312-9252AA92D869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1073DB6B-382D-4CA7-B312-9252AA92D869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1073DB6B-382D-4CA7-B312-9252AA92D869}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D94E8CAA-2B61-4E3A-B3C6-ACF6B55A401B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D94E8CAA-2B61-4E3A-B3C6-ACF6B55A401B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D94E8CAA-2B61-4E3A-B3C6-ACF6B55A401B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D94E8CAA-2B61-4E3A-B3C6-ACF6B55A401B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {643292AE-4EDD-4215-9FD8-2ECFEAEABC76}
+	EndGlobalSection
+EndGlobal

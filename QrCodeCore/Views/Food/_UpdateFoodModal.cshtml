@@ -1,0 +1,58 @@
+﻿@model QrCodeCore.Models.Foods
+
+<div class="modal fade" id="Modal3-@Model.Food_Id" tabindex="-1" role="dialog" aria-labelledby="Modal1Label" aria-hidden="true" style="display:none">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="Modal1Label">Yemek Türünü Güncelleyin.</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-controller="Food" asp-action="UpdateFood">
+                    <input type="hidden" name="Food_Photo" value="@Model.Food_Photo" />
+                    <input type="hidden" name="Food_Id" class="form-control" value="@Model.Food_Id" />
+                    <input type="hidden" name="Food_CreatedDate" class="form-control" value="@Model.Food_CreatedDate" />
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Yemek Adı:</label>
+                            <input type="text" name="Food_Name" class="form-control" value="@Model.Food_Name" />
+                        </div>
+                        <div class="col-6">
+                            <label>Yemek Fiyatı:</label>
+                            <input type="text" name="Food_Price" class="form-control" value="@Model.Food_Price" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Kategorisi:</label>
+                            <select name="Food_Type" class="form-control" selected>
+                                <option value="@Model.Food_Type">@Model.Type_Name</option>
+                                @foreach (var item in ViewBag.FoodTypeList)
+                                {
+                                    <option value="@item.FoodType_Id">@item.FoodType_Name</option>
+                                }
+                            </select>
+
+                        </div>
+                        <div class="col-6">
+                            <label>Açıklama:</label>
+                            <input type="text" name="Food_Description" class="form-control" value="@Model.Food_Description" />
+                        </div>
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Yemek Türünü Güncelle</button>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+
+            </div>
+        </div>
+    </div>
+</div>
