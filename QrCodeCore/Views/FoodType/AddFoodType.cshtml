@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "AddFoodType";
+}
+
+<div class="modal-body">
+    <form method="post" asp-action="AddFoodType" asp-controller="FoodType">
+        <div class="row">
+            <div class="col-6">
+                <label>Yemek Türü Adı:</label>
+                <input type="text" class="form-control" name="FoodType_Name" placeholder="" />
+            </div>
+
+        <button type="submit" class="btn btn-primary">Ekle</button>
+
+
+    </form>
+</div>
+

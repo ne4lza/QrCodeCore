@@ -1,4 +1,4 @@
-﻿@model QrCodeCore.ViewModels.FoodType.FoodTypeViewModel
+﻿@model List<FoodTypes>
 @{
     ViewBag.Title = "Index";
     int counter = 1;
@@ -20,42 +20,10 @@
 </style>
 <div class="row">
     <div class="col-12">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#Modal1"><i class="bi bi-plus me-1"></i>Bir Yemek Türü Ekle</button>
+        <a class="btn btn-primary" asp-action="AddFoodType" asp-controller="FoodType"><i class="bi bi-plus me-1"></i>Bir Yemek Türü Ekle</a>
     </div>
 </div>
 <br />
-<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="Modal1Label" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="Modal1Label">Bir yemek türü ekleyin.</h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="post" asp-action="AddFoodType" asp-controller="Menu">
-                    <div class="row">
-                        <div class="col-6">
-                            <input type="text" class="form-control" name="FoodType_Name" placeholder="Ör. İçecekler" />
-                        </div>
-                        <div class="col-6">
-                            <button type="submit" class="btn btn-primary">Yemek Türünü Listeye Ekle</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Menünüzde bulunan kategoriler</h5>
@@ -68,36 +36,27 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th class="col-md-5 col-xs-5">Kategori Adı</th>
+                    <th class="col-md-5 col-xs-5">Yemek Türü Adı</th>
                     <th class="col-md-4 col-xs-4">Oluşturulma Tarihi</th>
-                    <th class="col-md-3 col-xs-3">Durumu</th>
+
                 </tr>
                 <tr class="warning no-result">
                     <td colspan="4"><i class="fa fa-warning"></i>Hiçbir Sonuç Bulunamadı.</td>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.foodTypeList)
+                @foreach (var item in Model)
                 {
                     <tr>
                         <th scope="row">@counter</th>
                         <td>@item.FoodType_Name</td>
                         <td>@item.FoodType_CreatedDate</td>
-                        @if (item.FoodType_Status)
-                        {
-                            <td>Aktif</td>
-                        }
-                        else
-                        {
-                            <td>Pasif</td>
-                        }
-                        <td><a href="/Menu/UpdateFoodTypeStatus/@item.FoodType_Id" class="btn btn-secondary"><i class="bi bi-arrow-repeat"></i></a></td>
 
-                        <td><button type="button" data-toggle="modal" data-target=@("#Modal2-" + item.FoodType_Id) data-url="@Url.Action($"UpdateFoodType/{item.FoodType_Id}")" class="btn btn-warning"><i class="bi bi-pencil"></i></button></td>
+                        <td><a href="/FoodType/RemoveFoodType/@item.FoodType_Id" class="btn btn-secondary"><i class="bi bi-arrow-repeat"></i></a></td>
 
-
+                        <td><a href="/FoodType/UpdateFoodType/@item.FoodType_Id" class="btn btn-warning"><i class="bi bi-pencil"></i></a></td>
                     </tr>
-                     @Html.Partial("_UpdateModal", item) 
+
                     counter++;
                 }
             </tbody>
@@ -135,7 +94,7 @@
                 if (jobCount == '0') { $('.no-result').show(); }
                 else { $('.no-result').hide(); }
             });
-        });
-    </script>
+        });</script>
 }
+
 

@@ -58,11 +58,9 @@
                         <td>@item.Food_Price TL</td>
                         <td>@item.Type_Name</td>
 
-                        <td><a href="#" class="btn btn-secondary"><i class="bi bi-arrow-repeat"></i></a></td>
+                        <td><a href="/Food/RemoveFood/@item.Food_Id" class="btn btn-secondary"><i class="bi bi-arrow-repeat"></i></a></td>
 
-                        <td><button type="button" data-toggle="modal" data-target=@("#Modal3-"+item.Food_Id) data-url="@Url.Action($"UpdateFood/{item.Food_Id}")" class="btn btn-warning"><i class="bi bi-pencil"></i></button></td>
-
-                         @* @Html.Partial("_UpdateFoodModal", item)  *@
+                        <td><a href="/Food/UpdateFood/@item.Food_Id"class="btn btn-warning"><i class="bi bi-pencil"></i></a></td>
                     </tr>
 
                     counter++;

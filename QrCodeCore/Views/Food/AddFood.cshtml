@@ -1,4 +1,4 @@
-﻿
+﻿@model List<FoodTypes>
 @{
     ViewData["Title"] = "AddFood";
 }
@@ -9,8 +9,7 @@
     </button>
 </div>
 <div class="modal-body">
-    @using (Html.BeginForm("AddFood", "Food", FormMethod.Post))
-    {
+   <form method="post" asp-action="AddFood" asp-controller="Food">
         <div class="row">
             <div class="col-6">
                 <label>Yemek Adı:</label>
@@ -25,7 +24,7 @@
         <br />
         <label>Kateogrisi:</label>
         <select class="form-control" name="Food_Type">
-            @foreach (var item in Model.foodTypeList)
+            @foreach (var item in Model)
             {
                 <option value="@item.FoodType_Id">@item.FoodType_Name</option>
             }
@@ -46,5 +45,5 @@
         <button type="submit" class="btn btn-primary">Yemek Ekle</button>
 
 
-    }
+    </form>
 </div>

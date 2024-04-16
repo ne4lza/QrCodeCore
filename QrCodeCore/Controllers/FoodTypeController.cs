@@ -1,50 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using QrCodeCore.Models;
-using QrCodeCore.Models.Context;
-using QrCodeCore.ViewModels.Food;
 using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Text;
-using QrCodeCoreApi.DTO.UserDto;
-using QrCodeCoreApi.DTO.FoodDto;
-using NuGet.Packaging.Signing;
 
 namespace QrCodeCore.Controllers
 {
-    public class FoodController : Controller
+    public class FoodTypeController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public FoodController(IHttpClientFactory httpClientFactory)
+        public FoodTypeController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
         public async Task<IActionResult> Index()
         {
-            int businessId = (int)HttpContext.Session.GetInt32("Business_Id");
-            var client = _httpClientFactory.CreateClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            HttpResponseMessage response = await client.GetAsync($"https://localhost:7184/api/food/{businessId}");
-            if (response.IsSuccessStatusCode)
-            {
-                string content = await response.Content.ReadAsStringAsync();
-                List<Foods> foods = JsonConvert.DeserializeObject<List<Foods>>(content);
-                return View(foods);
-            }
-            else
-            {
-                // İstek başarısız olduysa burada bir hata işleme mekanizması ekleyebilirsiniz
-                throw new HttpRequestException("Error: Unable to retrieve foods");
-            }
-        }
-        [HttpGet]
-        public async Task<IActionResult> AddFood()
-        {
-
             int businessId = (int)HttpContext.Session.GetInt32("Business_Id");
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Accept.Clear();
@@ -63,40 +35,48 @@ namespace QrCodeCore.Controllers
                 throw new HttpRequestException("Error: Unable to retrieve foods");
             }
         }
-        [HttpPost]
-        public async Task<IActionResult> AddFood(Foods food)
+        [HttpGet]
+        public  IActionResult AddFoodType()
         {
-            food.Food_Business = (int)HttpContext.Session.GetInt32("Business_Id");
-            food.Food_CreatedDate = DateTime.Now;
-            var json = JsonConvert.SerializeObject(food);
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddFoodType(FoodTypes foodTypes)
+        {
+            foodTypes.FoodType_BusinessId = (int)HttpContext.Session.GetInt32("Business_Id");
+            foodTypes.FoodType_CreatedDate = DateTime.Now;
+            foodTypes.FoodType_Status = true;
+            var json = JsonConvert.SerializeObject(foodTypes);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var client = _httpClientFactory.CreateClient();
-            var response = await client.PostAsync("https://localhost:7184/api/food/AddFood", content);
+            var response = await client.PostAsync("https://localhost:7184/api/foodType/AddFoodType", content);
 
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Food");
+                return RedirectToAction("Index", "FoodType");
             }
             else
             {
                 return View();
             }
         }
+
         [HttpGet]
-        public async Task<IActionResult> UpdateFood(int id)
+        public async Task<IActionResult> UpdateFoodType(int id)
         {
             int businessId = (int)HttpContext.Session.GetInt32("Business_Id");
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = await client.GetAsync($"https://localhost:7184/api/food/FoodId/{id}");
+            HttpResponseMessage response = await client.GetAsync($"https://localhost:7184/api/foodType/FoodTypeId/{id}");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
-                Foods foods = JsonConvert.DeserializeObject<Foods>(content);
-                return View(foods);
+                FoodTypes foodTypes = JsonConvert.DeserializeObject<FoodTypes>(content);
+                return View(foodTypes);
             }
             else
             {
@@ -105,18 +85,17 @@ namespace QrCodeCore.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateFood(Foods foods)
+        public async Task<IActionResult> UpdateFoodType(FoodTypes foodTypes)
         {
-            foods.Food_Business = (int)HttpContext.Session.GetInt32("Business_Id");
-            var json = JsonConvert.SerializeObject(foods);
+            var json = JsonConvert.SerializeObject(foodTypes);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var client = _httpClientFactory.CreateClient();
-            var response = await client.PostAsync("https://localhost:7184/api/food/UpdateFood", content);
+            var response = await client.PostAsync("https://localhost:7184/api/foodType/UpdateFoodType", content);
 
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Food");
+                return RedirectToAction("Index", "FoodType");
             }
             else
             {
@@ -124,17 +103,18 @@ namespace QrCodeCore.Controllers
             }
 
         }
+
         [HttpGet]
-        public async Task<IActionResult> RemoveFood(int id)
+        public async Task<IActionResult> RemoveFoodType(int id)
         {
             var json = JsonConvert.SerializeObject(id);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://localhost:7184/api/food/RemoveFood/{id}");
+            var response = await client.GetAsync($"https://localhost:7184/api/foodType/RemoveFoodType/{id}");
 
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Food");
+                return RedirectToAction("Index", "FoodType");
             }
             else
             {
@@ -144,4 +124,3 @@ namespace QrCodeCore.Controllers
         }
     }
 }
-

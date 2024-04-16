@@ -1,0 +1,36 @@
+﻿@model FoodTypes
+@{
+    ViewData["Title"] = "AddFood";
+}
+<div class="modal-header">
+    <h2 class="modal-title" id="Modal1Label">Yemek Güncelleme</h2>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form method="post" asp-action="UpdateFoodType" asp-controller="FoodType">
+        <div class="row">
+            <div class="col-6">
+                <label>Yemek Adı:</label>
+                <input type="text" class="form-control" name="FoodType_Name" placeholder="Su" value="@Model.FoodType_Name" />
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-6">
+                <input type="hidden" name="FoodType_Id" class="form-control" value="@Model.FoodType_Id" />
+                <input type="hidden" name="FoodType_Status" class="form-control" value="@Model.FoodType_Status" />
+                <input type="hidden" name="FoodType_BusinessId" class="form-control" value="@Model.FoodType_BusinessId" />
+                <input type="hidden" name="FoodType_CreatedDate" class="form-control" value="@Model.FoodType_CreatedDate" />
+            </div>
+        </div>
+        <br />
+
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+
+
+    </form>
+</div>
+
