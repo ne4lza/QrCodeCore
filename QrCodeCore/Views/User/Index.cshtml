@@ -18,72 +18,13 @@
         color: #ccc;
     }
 </style>
-<div class="row">
-    <div class="col-12">
-        @if (ViewBag.countUser == 2)
-        {
-            <div class="row">
-                <div class="col-2">
-                    <button class="btn btn-primary" disabled data-toggle="modal" data-target="#Modal1"><i class="bi bi-plus me-1"></i>Bir Kullanıcı Ekle</button>
 
-                </div>
-                <div class="col-10">
-                    <div class="alert alert-danger" role="alert" style="width: 200px">
-                        Bir sistemde en fazla 2 kullanıcı açılabilir.
-                    </div>
-                </div>
-            </div>
-        }
-        else
-        {
-            <button class="btn btn-primary" data-toggle="modal" data-target="#Modal1"><i class="bi bi-plus me-1"></i>Bir Kullanıcı Ekle</button>
-        }
-    </div>
-</div>
-<br />
-<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="Modal1Label" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="Modal1Label">Bir Kullanıcı Ekleyin.</h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                @using (Html.BeginForm("AddUser", "User", FormMethod.Post))
-                {
-                    <div class="row">
-                        <div class="col-6">
-                            <input type="text" class="form-control" name="User_Name" required />
-                        </div>
-                        <div class="col-6">
-                            <input type="text" class="form-control" name="User_LastName" required />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <input type="text" class="form-control" name="User_UserName" required />
-                        </div>
-                        <div class="col-6">
-                            <input type="text" class="form-control" name="Password" required />
-                        </div>
-                    </div>
-                }
-                <button class="btn btn-primary" type="submit">Kullanıcıyı Ekle</button>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
-
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
 
 <div class="card">
+    <a asp-action="AddUser" asp-controller="User" class="btn btn-primary">Yeni Kullanıcı</a>
     <div class="card-body">
         <h5 class="card-title">Kullanıcılarınız</h5>
         <!-- Table with stripped rows -->
@@ -118,13 +59,12 @@
                         {
                             <td>Pasif</td>
                         }
-                        <td><a href="/Menu/UpdateFoodTypeStatus/@item.User_Id" class="btn btn-secondary"><i class="bi bi-arrow-repeat"></i></a></td>
+                        <td><a href="/User/RemoveUser/@item.User_Id" class="btn btn-secondary"><i class="bi bi-arrow-repeat"></i></a></td>
 
-                        <td><button type="button" data-toggle="modal" data-target=@("#Modal2-" + item.User_Id) data-url="@Url.Action($"UpdateFoodType/{item.User_Id}")" class="btn btn-warning"><i class="bi bi-pencil"></i></button></td>
+                        <td><a href="/User/UpdateUser/@item.User_Id" class="btn btn-warning"><i class="bi bi-pencil"></i></a></td>
 
 
                     </tr>
-                    @*@Html.Partial("_UpdateModal", item)*@
                     counter++;
                 }
             </tbody>

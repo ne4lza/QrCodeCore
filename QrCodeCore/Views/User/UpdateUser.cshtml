@@ -1,0 +1,45 @@
+﻿@model SysUsers
+@{
+    ViewData["Title"] = "AddFood";
+}
+<div class="modal-header">
+    <h2 class="modal-title" id="Modal1Label">Kullanıcı Güncelleme</h2>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form method="post" asp-action="UpdateUser" asp-controller="User">
+        <div class="row">
+            <div class="col-6">
+                <label>Kişi Adı:</label>
+                <input type="text" class="form-control" name="User_Name" placeholder="Su" value="@Model.User_Name" />
+
+                <label>Kişi Soyadı:</label>
+                <input type="text" class="form-control" name="User_LastName" placeholder="Su" value="@Model.User_LastName" />
+
+                <label>Kullanıcı Adı:</label>
+                <input type="text" class="form-control" name="User_UserName" placeholder="Su" value="@Model.User_UserName" />
+
+
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-6">
+                <input type="hidden" name="User_Id" class="form-control" value="@Model.User_Id" />
+                <input type="hidden" name="User_FullName" class="form-control" value="@Model.User_FullName" />
+                <input type="hidden" name="User_Password" class="form-control" value="@Model.User_Password" />
+                <input type="hidden" name="User_Status" class="form-control" value="@Model.User_Status" />
+                <input type="hidden" name="User_BusinessId" class="form-control" value="@Model.User_BusinessId" />
+            </div>
+        </div>
+        <br />
+
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+
+
+    </form>
+</div>
+

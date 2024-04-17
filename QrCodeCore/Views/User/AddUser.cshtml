@@ -1,0 +1,36 @@
+﻿@model List<FoodTypes>
+@{
+    ViewData["Title"] = "AddFood";
+}
+<div class="modal-header">
+    <h2 class="modal-title" id="Modal1Label">Bir yemek ekleyin.</h2>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form method="post" asp-action="AddUser" asp-controller="User">
+        <div class="row">
+            <div class="col-6">
+                <label>Kişi Adı:</label>
+                <input type="text" class="form-control" name="User_Name" />
+            </div>
+            <div class="col-6">
+                <label>Kişi Soyadı:</label>
+                <input type="text" class="form-control" name="User_LastName" />
+            </div>
+            <div class="col-6">
+                <label>Kullanıcı adı:</label>
+                <input type="text" class="form-control" name="User_UserName" />
+            </div>
+            <div class="col-6">
+                <label>Şifre:</label>
+                <input type="text" class="form-control" name="User_Password" />
+            </div>
+            <br />
+        </div>
+        <button type="submit" class="btn btn-primary">Kullanıcı Ekle</button>
+
+
+    </form>
+</div>
